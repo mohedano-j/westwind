@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { MatCardModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatTableModule, MatPaginatorModule } from '@angular/material';
+import { MatCardModule, MatIconModule, MatToolbarModule, MatButtonModule, MatSelectModule, MatFormFieldModule, MatInputModule, MatTableModule, MatPaginatorModule } from '@angular/material';
 import { MatSortModule } from '@angular/material/sort';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -35,6 +35,7 @@ import { ProductListComponent } from "./product-list/product-list.component"
     MatInputModule,
     MatTableModule,
     MatSortModule,
+    MatSelectModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
     RouterModule.forRoot([

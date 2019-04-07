@@ -1,6 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { MatSort, MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatSort, MatTableDataSource, MatSelect, MatPaginator } from '@angular/material';
 import { ProductsService } from '../products-service';
+import { CategoriesService } from '../categories-service';
 
 
 @Component({
@@ -11,12 +12,13 @@ import { ProductsService } from '../products-service';
 export class HomeComponent implements OnInit {
 
   productList;
+  categoryList;
   dataSource;
-  displayedColumns: string[] = ['productId', 'productName'];
+  displayedColumns: string[] = ['productId', 'productName', 'categoryId'];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;  
-  
-  constructor(private productsService: ProductsService) { }
+
+  constructor(private productsService: ProductsService, private categoriesService: CategoriesService) { }
 
   ngOnInit() {
     this.productsService.getProducts().subscribe(data => {
@@ -24,6 +26,9 @@ export class HomeComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.productList);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
+    });
+    this.categoriesService.getCategories().subscribe(data => {
+      this.categoryList = data;
     });
   }
 }
