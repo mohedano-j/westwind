@@ -1,12 +1,27 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { MatCardModule, MatIconModule, MatToolbarModule, MatButtonModule, MatSelectModule, MatFormFieldModule, MatInputModule, MatTableModule, MatPaginatorModule } from '@angular/material';
-import { MatSortModule } from '@angular/material/sort';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+// Angular Material Modules
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatToolbarModule,
+  MatSelectModule,
+  MatTableModule,
+} from '@angular/material';
+
+import { MatSortModule } from '@angular/material/sort';
+
+// Application Components
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
@@ -25,19 +40,21 @@ import { ProductListComponent } from "./product-list/product-list.component"
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-    HttpClientModule,
+    BrowserAnimationsModule,
     FormsModule,
+    HttpClientModule,
+    // Angular Material   
     MatCardModule,
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatTableModule,
-    MatSortModule,
-    MatSelectModule,
-    BrowserAnimationsModule,
     MatPaginatorModule,
+    MatSelectModule,
+    MatSortModule,
+    MatTableModule,
+    // Routing
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
@@ -45,6 +62,6 @@ import { ProductListComponent } from "./product-list/product-list.component"
     ])
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent] // Startup
 })
 export class AppModule { }

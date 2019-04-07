@@ -1,8 +1,7 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
-import { MatSort, MatTableDataSource, MatSelect, MatPaginator } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, MatSort, MatTableDataSource  } from '@angular/material';
 import { ProductsService } from '../products-service';
 import { CategoriesService } from '../categories-service';
-
 
 @Component({
   selector: 'app-home',
@@ -21,12 +20,14 @@ export class HomeComponent implements OnInit {
   constructor(private productsService: ProductsService, private categoriesService: CategoriesService) { }
 
   ngOnInit() {
+    // Fetch the list of products.
     this.productsService.getProducts().subscribe(data => {
       this.productList = data;
       this.dataSource = new MatTableDataSource(this.productList);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     });
+    // Fetch the list of categories.
     this.categoriesService.getCategories().subscribe(data => {
       this.categoryList = data;
     });
