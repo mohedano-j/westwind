@@ -4,9 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
-// Angular Material Modules
 import {
   MatButtonModule,
   MatCardModule,
@@ -21,12 +20,10 @@ import {
 
 import { MatSortModule } from '@angular/material/sort';
 
-// Application Components
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { ProductComponent } from './product/product.component';
 import { ProductListComponent } from "./product-list/product-list.component"
 
 @NgModule({
@@ -34,8 +31,7 @@ import { ProductListComponent } from "./product-list/product-list.component"
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
+    ProductComponent,
     ProductListComponent
   ],
   imports: [
@@ -43,7 +39,6 @@ import { ProductListComponent } from "./product-list/product-list.component"
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    // Angular Material   
     MatCardModule,
     MatIconModule,
     MatToolbarModule,
@@ -54,11 +49,10 @@ import { ProductListComponent } from "./product-list/product-list.component"
     MatSelectModule,
     MatSortModule,
     MatTableModule,
-    // Routing
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'product/add', component: ProductComponent },
+      { path: 'product/edit/:productId', component: ProductComponent }
     ])
   ],
   providers: [],

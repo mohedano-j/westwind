@@ -19,7 +19,7 @@ export class CategoriesService {
   //serviceRoot: string = "http://localhost/northwind.web/"; 
   serviceRoot: string = "http://localhost:5000/";
 
-  getCategories() {
+  getAll() {
     return this.http.get(this.serviceRoot + "categories", this.httpOptions);
   }
 }

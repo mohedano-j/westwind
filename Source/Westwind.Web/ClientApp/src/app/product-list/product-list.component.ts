@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProductsService } from "../products-service";
+import { CategoriesService } from '../categories-service';
+import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-product-list',
@@ -8,30 +10,26 @@ import { ProductsService } from "../products-service";
 })
 export class ProductListComponent implements OnInit {
 
-  private productList: any;
+  productList;
+  categoryList;
+  dataSource;
+  displayedColumns: string[] = ['productId', 'productName', 'categoryId'];
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService, private categoriesService: CategoriesService) { }
 
   ngOnInit() {
-    this.productsService.getProducts().subscribe( productList => { 
-      this.productList = productList;
+    // Fetch the list of products.
+    this.productsService.getAll().subscribe(data => {
+      this.productList = data;
+      this.dataSource = new MatTableDataSource(this.productList);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     });
-  }
-
-  getByProductId(productId: number) {
-    this.productsService.getProductsByProductId(productId).subscribe( product => {
-      this.productList = [];
-      this.productList.push(product);
-    });
-  }
-
-  addProduct() {
-    console.log("product-list Adding Product");
-    this.productsService.addProduct();
-
-    console.log("product-list Reloading Products");
-    this.productsService.getProducts().subscribe(products => {
-      this.productList = products;
+    // Fetch the list of categories.
+    this.categoriesService.getAll().subscribe(data => {
+      this.categoryList = data;
     });
   }
 }

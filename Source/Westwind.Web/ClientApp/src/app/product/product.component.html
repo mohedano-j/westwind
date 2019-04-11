@@ -1,0 +1,25 @@
+<h3>Product Detail</h3>
+
+<a routerLink="/">Show all products</a>
+
+<table class="table table-condensed">
+  <tr>
+    <td width="25%">Product ID</td>
+    <td><input type="text" #productId value="{{ product?.productId }}" /></td>
+  </tr>
+  <tr>
+    <td>Product Name</td>
+    <td><input type="text" #productName value="{{ product?.productName }}" /></td>
+  </tr>
+  <tr>
+    <td>Category ID</td>
+    <td>
+      <select #categoryId>
+        <option *ngFor="let category of categoryList" value="{{ category.categoryId }}" [selected]="product?.categoryId===category.categoryId">{{ category.categoryName }}</option>
+      </select>
+    </td>
+  </tr>
+</table>
+
+<button *ngIf="showEdit()" (click)="edit(productName.value, categoryId.value)">Edit Product</button>
+<button *ngIf="showAdd()" (click)="add(productName.value, categoryId.value)">Add Product</button>
