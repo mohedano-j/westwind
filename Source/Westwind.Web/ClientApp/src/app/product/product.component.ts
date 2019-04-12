@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ProductsService } from '../products-service';
 import { ActivatedRoute } from '@angular/router';
 import { CategoriesService } from '../categories-service';
+import { ToastService } from '../toast-service';
 
 @Component({
   selector: 'app-product-component',
@@ -13,7 +14,7 @@ export class ProductComponent implements OnInit {
   product: any;
   categoryList: any;
 
-  constructor(private route: ActivatedRoute, private productsService: ProductsService, private categoriesService: CategoriesService) { }
+  constructor(private route: ActivatedRoute, private productsService: ProductsService, private categoriesService: CategoriesService, private toast: ToastService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -23,7 +24,6 @@ export class ProductComponent implements OnInit {
           this.product = data;
         });
       }
-      console.log("product-component.ngOnInit.productId=" + this.productId);
       this.categoriesService.getAll().subscribe(data => {
         this.categoryList = data;
       });
@@ -42,12 +42,14 @@ export class ProductComponent implements OnInit {
     this.productsService.add(productName, categoryId).subscribe(data => {
       this.productId = data.productId;
       this.product = data;
+      this.toast.success("Product added!");
     });
   }
 
   edit(productName, categoryId) {
     this.productsService.edit(this.productId, productName, categoryId).subscribe(data => {
       this.product = data;
+      this.toast.success("Product edited");
     });
   }
 }
