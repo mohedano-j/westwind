@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Product } from './product';
 
 @Injectable({
   providedIn: 'root'
@@ -19,36 +20,27 @@ export class ProductsService {
 
   serviceRoot: string = "http://localhost:5000/";
 
-  getAll() {
-    return this.http.get(this.serviceRoot + "products", this.httpOptions);
+  getOne(productId: any) : Observable<Product> {
+    return this.http.get<Product>(this.serviceRoot + "products/" + productId, this.httpOptions);
   }
 
-  find(query: string) {
-    return this.http.get(this.serviceRoot + "products/find/" + query, this.httpOptions);
+  getAll(): Observable<Array<Product>> {
+    return this.http.get<Array<Product>>(this.serviceRoot + "products", this.httpOptions);
   }
 
-  getOne(productId: any) {
-    return this.http.get(this.serviceRoot + "products/" + productId, this.httpOptions);
+  search(term: string) : Observable<Array<Product>> {
+    return this.http.get<Array<Product>>(this.serviceRoot + "products/search/" + term, this.httpOptions);
   }
-
-  add(productName, categoryId) : Observable<any> {
-
-    let product = {
-      productName: productName,
-      categoryId: categoryId
-    }
-
-    return this.http.post(this.serviceRoot + "products", product, this.httpOptions);
+  
+  add(product) : Observable<Product> {
+    return this.http.post<Product>(this.serviceRoot + "products", product, this.httpOptions);
   }
     
-  edit(productId, productName, categoryId) : Observable<any> {
+  edit(product): Observable<Product> {
+    return this.http.put<Product>(this.serviceRoot + "products", product, this.httpOptions);
+  }
 
-    let product = {
-      productId: productId,
-      productName: productName,
-      categoryId: categoryId
-    }
-
-    return this.http.put(this.serviceRoot + "products", product, this.httpOptions);
+  delete(product): Observable<any> {
+    return this.http.delete(this.serviceRoot + "products/" + product.productId, this.httpOptions);
   }
 }

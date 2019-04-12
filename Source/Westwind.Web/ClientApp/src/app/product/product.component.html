@@ -1,25 +1,36 @@
-<h3>Product Detail</h3>
 
-<a routerLink="/">Show all products</a>
+
+<h3 *ngIf="showAdd()">Add a Product</h3>
+<h3 *ngIf="showEdit()">Edit a Product</h3>
 
 <table class="table table-condensed">
   <tr>
     <td width="25%">Product ID</td>
-    <td><input type="text" #productId value="{{ product?.productId }}" class="form-control" /></td>
+    <td>
+      <input type="text" [(ngModel)]="product.productId" name="productId" class="form-control" />
+      {{ product.productId }}
+    </td>
   </tr>
   <tr>
     <td>Product Name</td>
-    <td><input type="text" #productName value="{{ product?.productName }}" class="form-control"/></td>
+    <td>
+      <input type="text" [(ngModel)]="product.productName" name="productName" class="form-control" required maxlength="25" />
+      {{ product.productName }}
+    </td>
   </tr>
   <tr>
     <td>Category ID</td>
     <td>
-      <select #categoryId class="form-control">
+      <select [(ngModel)]="product.categoryId" name="categoryId" class="form-control" required>
         <option *ngFor="let category of categoryList" value="{{ category.categoryId }}" [selected]="product?.categoryId===category.categoryId">{{ category.categoryName }}</option>
       </select>
+      {{ product.categoryId }}
     </td>
   </tr>
 </table>
 
-<button *ngIf="showEdit()" (click)="edit(productName.value, categoryId.value)" class="btn btn-primary btn-sm">Edit Product</button>
-<button *ngIf="showAdd()" (click)="add(productName.value, categoryId.value)" class="btn btn-primary btn-sm">Add Product</button>
+<button *ngIf="showAdd()" (click)="add()" class="btn btn-primary btn-sm m-2">Add Product</button>
+<button *ngIf="showEdit()" (click)="edit()" class="btn btn-primary btn-sm m-2">Save Changes</button>
+<button *ngIf="showDelete()" (click)="delete()" class="btn btn-danger btn-sm m-2">Delete Product</button>
+
+

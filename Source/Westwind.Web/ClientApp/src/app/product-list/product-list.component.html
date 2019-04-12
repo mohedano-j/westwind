@@ -1,6 +1,10 @@
 <h3>Product List</h3>
 
-<a routerLink="product/add">Add a Product</a>
+<div class="row">
+  <div class="col">
+    <button routerLink="product/add" class="btn btn-primary btn-sm m-2 float-right">Add a Product</button>
+  </div>
+</div>
 
 <div class="mat-elevation-z8">
 
@@ -31,6 +35,6 @@
 
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
 
 </div>

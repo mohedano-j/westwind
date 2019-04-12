@@ -20,14 +20,14 @@ export class ProductListComponent implements OnInit {
   constructor(private productsService: ProductsService, private categoriesService: CategoriesService) { }
 
   ngOnInit() {
-    // Fetch the list of products.
+    
     this.productsService.getAll().subscribe(data => {
       this.productList = data;
       this.dataSource = new MatTableDataSource(this.productList);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     });
-    // Fetch the list of categories.
+
     this.categoriesService.getAll().subscribe(data => {
       this.categoryList = data;
     });

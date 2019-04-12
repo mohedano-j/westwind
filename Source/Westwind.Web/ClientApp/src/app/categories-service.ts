@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Category } from './category';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +18,9 @@ export class CategoriesService {
 
   constructor(private http : HttpClient) { }
 
-  //serviceRoot: string = "http://localhost/northwind.web/"; 
   serviceRoot: string = "http://localhost:5000/";
 
-  getAll() {
-    return this.http.get(this.serviceRoot + "categories", this.httpOptions);
+  getAll() : Observable<Array<Category>> {
+    return this.http.get<Array<Category>>(this.serviceRoot + "categories", this.httpOptions);
   }
 }
