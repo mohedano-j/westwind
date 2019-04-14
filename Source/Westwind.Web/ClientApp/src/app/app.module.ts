@@ -27,6 +27,8 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { ProductComponent } from './product/product.component';
 import { ProductListComponent } from "./product-list/product-list.component"
+import { ProductAddComponent } from './product-add/product-add.component';
+import { ProductEditComponent } from './product-edit/product-edit.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { ProductListComponent } from "./product-list/product-list.component"
     NavMenuComponent,
     HomeComponent,
     ProductComponent,
+    ProductAddComponent,
+    ProductEditComponent,
     ProductListComponent
   ],
   imports: [
@@ -57,8 +61,8 @@ import { ProductListComponent } from "./product-list/product-list.component"
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
-      { path: 'product/add', component: ProductComponent },
-      { path: 'product/edit/:productId', component: ProductComponent }
+      { path: 'products/add', component: ProductAddComponent },
+      { path: 'products/edit/:productId', component: ProductEditComponent }
     ])
   ],
   providers: [],

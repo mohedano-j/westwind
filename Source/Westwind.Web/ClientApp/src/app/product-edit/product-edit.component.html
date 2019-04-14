@@ -1,0 +1,29 @@
+<h3>Edit Product</h3>
+
+<table class="table table-condensed">
+  <tr>
+    <td width="25%">Product ID</td>
+    <td>{{ product.productId }}</td>
+  </tr>
+  <tr>
+    <td>Product Name</td>
+    <td>
+      <input type="text" [(ngModel)]="product.productName" name="productName" class="form-control" required maxlength="25" />
+      {{ product.productName }}
+    </td>
+  </tr>
+  <tr>
+    <td>Category ID</td>
+    <td>
+      <select [(ngModel)]="product.categoryId" name="categoryId" class="form-control" required>
+        <option *ngFor="let category of categoryList" value="{{ category.categoryId }}" [selected]="product?.categoryId===category.categoryId">{{ category.categoryName }}</option>
+      </select>
+      {{ product.categoryId }}
+    </td>
+  </tr>
+</table>
+
+<button (click)="saveChanges()" class="btn btn-primary btn-sm m-2">Save Changes</button>
+<button (click)="delete()" class="btn btn-danger btn-sm m-2">Delete</button>
+
+
