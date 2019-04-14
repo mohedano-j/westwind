@@ -23,24 +23,29 @@ export class ProductAddComponent implements OnInit {
   ngOnInit() {
 
     this.route.paramMap.subscribe(params => {
+
       this.productId = params.get("productId");
-      console.log(this.productId);
+
       if (this.productId) {
         this.productsService.getOne(this.productId).subscribe(data => {
           this.product = data;
         });
       }
+
       this.categoriesService.getAll().subscribe(data => {
         this.categoryList = data;
       });
+
     });    
   }
 
   saveChanges() {
+
     this.productsService.add(this.product).subscribe(data => {
       this.productId = data.productId.toString();
       this.product = data;
       this.router.navigate(["/products/edit/", this.productId]);
     });
+
   }
 }

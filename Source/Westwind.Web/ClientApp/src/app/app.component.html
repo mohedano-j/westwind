@@ -1,6 +1,9 @@
 <body>
   <app-nav-menu></app-nav-menu>
   <div class="container">
+    <div [hidden]="!this.spinner.active" class="loader">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
     <router-outlet></router-outlet>
   </div>
 </body>
