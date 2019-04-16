@@ -7,20 +7,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatInputModule,
-  MatPaginatorModule,
-  MatProgressBarModule,
-  MatToolbarModule,
-  MatSelectModule,
-  MatTableModule,
-} from '@angular/material';
-
+import { MatButtonModule } from '@angular/material';
+import { MatCardModule } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material';
+import { MatIconModule } from '@angular/material';
+import { MatInputModule} from '@angular/material'; 
+import { MatPaginatorModule} from '@angular/material';
+import { MatProgressBarModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material';
 import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material';
+import { MatToolbarModule} from '@angular/material';
+
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -30,10 +30,12 @@ import { ProductComponent } from './product/product.component';
 import { ProductListComponent } from "./product-list/product-list.component"
 import { ProductAddComponent } from './product-add/product-add.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoadingComponent,
     LoginComponent,
     NavMenuComponent,
     HomeComponent,
@@ -59,6 +61,10 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
     MatSelectModule,
     MatSortModule,
     MatTableModule,
+
+    LoadingBarHttpClientModule,
+    LoadingBarRouterModule,
+
     ToastrModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },

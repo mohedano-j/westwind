@@ -23,7 +23,6 @@ export class ProductEditComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-
     this.route.paramMap.subscribe(params => {
       this.productId = params.get("productId");
       console.log(this.productId);

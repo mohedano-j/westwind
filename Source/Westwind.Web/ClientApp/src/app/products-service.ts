@@ -21,12 +21,13 @@ export class ProductsService {
 
   serviceRoot: string = "http://localhost:5000/";
 
-  getOne(productId: any) : Observable<Product> {
+  getOne(productId: any): Observable<Product> {
     return this.http.get<Product>(this.serviceRoot + "products/" + productId, this.httpOptions);
   }
 
   getAll(): Observable<Array<Product>> {
-    return this.http.get<Array<Product>>(this.serviceRoot + "products", this.httpOptions); //.pipe(rxop.delay(5000))
+    console.log("product-service.getAll() start");
+    return this.http.get<Array<Product>>(this.serviceRoot + "products", this.httpOptions); //.pipe(rxop.delay(2000));
   }
 
   search(term: string) : Observable<Array<Product>> {

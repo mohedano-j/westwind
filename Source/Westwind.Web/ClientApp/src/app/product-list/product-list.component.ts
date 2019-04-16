@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProductsService } from "../products-service";
 import { CategoriesService } from '../categories-service';
-import { SpinnerService } from '../spinner-service';
 import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
+import { LoadingService } from '../loading-service';
 
 @Component({
   selector: 'app-product-list',
@@ -18,23 +18,25 @@ export class ProductListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private productsService: ProductsService, private categoriesService: CategoriesService, private spinner: SpinnerService) { }
+  constructor(private productsService: ProductsService, private categoriesService: CategoriesService, private loadingService: LoadingService) { }
 
   ngOnInit() {
 
-    this.spinner.show();
+    //this.loadingService.addCall();
+
     this.productsService.getAll().subscribe(data => {
+      console.log("product-service.getAll().sub() done");
       this.productList = data;
       this.dataSource = new MatTableDataSource(this.productList);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-      this.spinner.hide();
+      //this.loadingService.removeCall();
     });
 
-    this.spinner.show();
+    //this.loadingService.addCall();
     this.categoriesService.getAll().subscribe(data => {
       this.categoryList = data;
-      this.spinner.hide();
+      //this.loadingService.removeCall();
     });
   }
 }
