@@ -15,10 +15,7 @@ export class ProductAddComponent implements OnInit {
   product: Product = new Product();
   categoryList: Array<Category> = new Array<Category>();
   
-  constructor(private route: ActivatedRoute,
-    private productsService: ProductsService,
-    private categoriesService: CategoriesService,
-    private router: Router) { }
+  constructor(private route: ActivatedRoute, private productsService: ProductsService, private categoriesService: CategoriesService, private router: Router) {}
 
   ngOnInit() {
 

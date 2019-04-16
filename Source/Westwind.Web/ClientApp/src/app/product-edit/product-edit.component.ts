@@ -16,16 +16,11 @@ export class ProductEditComponent implements OnInit {
   product: Product = new Product();
   categoryList: Array<Category> = new Array<Category>();
   
-  constructor(private route: ActivatedRoute,
-    private productsService: ProductsService,
-    private categoriesService: CategoriesService,
-    private toast: ToastrService,
-    private router: Router) { }
+  constructor(private route: ActivatedRoute, private productsService: ProductsService, private categoriesService: CategoriesService, private toast: ToastrService, private router: Router) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.productId = params.get("productId");
-      console.log(this.productId);
       if (this.productId) {
         this.productsService.getOne(this.productId).subscribe(data => {
           this.product = data;
@@ -49,4 +44,5 @@ export class ProductEditComponent implements OnInit {
       this.router.navigate(["/"]);
     });
   }
+
 }

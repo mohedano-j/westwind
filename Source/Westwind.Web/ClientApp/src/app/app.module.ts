@@ -26,20 +26,16 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { ProductComponent } from './product/product.component';
 import { ProductListComponent } from "./product-list/product-list.component"
 import { ProductAddComponent } from './product-add/product-add.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
-import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoadingComponent,
     LoginComponent,
     NavMenuComponent,
     HomeComponent,
-    ProductComponent,
     ProductAddComponent,
     ProductEditComponent,
     ProductListComponent
