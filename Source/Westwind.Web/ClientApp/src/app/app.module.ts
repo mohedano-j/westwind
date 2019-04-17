@@ -29,6 +29,7 @@ import { HomeComponent } from './home/home.component';
 import { ProductListComponent } from "./product-list/product-list.component"
 import { ProductAddComponent } from './product-add/product-add.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
+import { ProductAddEditComponent } from './product-add-edit/product-add-edit.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
     HomeComponent,
     ProductAddComponent,
     ProductEditComponent,
+    ProductAddEditComponent,
     ProductListComponent
   ],
   imports: [
@@ -66,11 +68,12 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
-      { path: 'products/add', component: ProductAddComponent },
-      { path: 'products/edit/:productId', component: ProductEditComponent }
+      { path: 'products/add', component: ProductAddEditComponent },
+      { path: 'products/edit/:productId', component: ProductAddEditComponent }
     ])
   ],
   providers: [],
   bootstrap: [AppComponent] // Startup
 })
 export class AppModule { }
+

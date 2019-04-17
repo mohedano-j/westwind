@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProductsService } from "../products-service";
 import { CategoriesService } from '../categories-service';
 import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
+import { Product } from '../product';
+import { Category } from '../category';
 
 @Component({
   selector: 'app-product-list',
@@ -10,8 +12,8 @@ import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 })
 export class ProductListComponent implements OnInit {
 
-  productList;
-  categoryList;
+  productList: Product[];
+  categoryList: Category[];
   dataSource;
   displayedColumns: string[] = ['productId', 'productName', 'categoryId'];
   @ViewChild(MatSort) sort: MatSort;

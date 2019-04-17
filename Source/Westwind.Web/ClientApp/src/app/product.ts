@@ -1,14 +1,5 @@
-import { Deserializable } from "./deserializable";
-
-export class Product implements Deserializable {
-
+export class Product {
   productId: number;
   productName: string;
   categoryId: number;
-
-  deserialize(input: any) {
-    Object.assign(this, input);
-    return this;
-  }
-
 }

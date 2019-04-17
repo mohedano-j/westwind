@@ -20,7 +20,7 @@ export class CategoriesService {
 
   serviceRoot: string = "http://localhost:5000/";
 
-  getAll() : Observable<Array<Category>> {
-    return this.http.get<Array<Category>>(this.serviceRoot + "categories", this.httpOptions);
+  getAll() : Observable<Category[]> {
+    return this.http.get<Category[]>(this.serviceRoot + "categories", this.httpOptions);
   }
 }

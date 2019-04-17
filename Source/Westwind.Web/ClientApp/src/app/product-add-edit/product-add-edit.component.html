@@ -1,0 +1,39 @@
+<h3>Add/Edit Product</h3>
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm)">
+  <table class="table table-condensed">
+    <tr>
+      <td width="25%">Product ID</td>
+      <td>
+        <input type="text" formControlName="productId" class="form-control" readonly />
+      </td>
+    </tr>
+    <tr>
+      <td>Product Name</td>
+      <td>
+        <input type="text" formControlName="productName" class="form-control" />
+        <div *ngIf="productForm.controls['productName'].invalid">
+          <div class="alert alert-danger" *ngIf="productForm.controls['productName'].errors.required">Product Name is required</div>
+          <div class="alert alert-danger" *ngIf="productForm.controls['productName'].errors.minlength">Product Name must be at least 4 characters</div>
+          <div class="alert alert-danger" *ngIf="productForm.controls['productName'].errors.maxlength">Product Name must be less than 10 characters</div>
+          <div class="alert alert-danger" *ngIf="productForm.controls['productName'].errors.nodank">Product Name cannot contain "dank"</div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Category ID</td>
+      <td>
+        <select formControlName="categoryId" class="form-control">
+          <option value="">&lt;Please select a category&gt;</option>
+          <option *ngFor="let category of categoryList" value="{{ category.categoryId }}" [selected]="productForm.controls.categoryId.value===category.categoryId">{{ category.categoryName }}</option>
+        </select>
+        <div *ngIf="productForm.controls.categoryId.invalid">
+          <div class="alert alert-danger" *ngIf="productForm.controls['categoryId'].errors.required">Category ID is required</div>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <button type="submit" class="btn btn-primary btn-sm m-2">Save Changes</button>
+  <button type="button" (click)="delete()" [hidden]="product.productId===undefined" class="btn btn-danger btn-sm m-2">Delete</button>
+</form>
