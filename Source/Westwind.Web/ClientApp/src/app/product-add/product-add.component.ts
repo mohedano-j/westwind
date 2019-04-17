@@ -11,7 +11,7 @@ import { Category } from '../category';
 })
 export class ProductAddComponent implements OnInit {
 
-  productId: string;
+  productId: number;
   product: Product = new Product();
   categoryList: Array<Category> = new Array<Category>();
   
@@ -21,7 +21,7 @@ export class ProductAddComponent implements OnInit {
 
     this.route.paramMap.subscribe(params => {
 
-      this.productId = params.get("productId");
+      this.productId = +params.get("productId"); // The + operator converts a string to a number.
 
       if (this.productId) {
         this.productsService.getOne(this.productId).subscribe(data => {
@@ -39,7 +39,7 @@ export class ProductAddComponent implements OnInit {
   saveChanges() {
 
     this.productsService.add(this.product).subscribe(data => {
-      this.productId = data.productId.toString();
+      this.productId = data.productId;
       this.product = data;
       this.router.navigate(["/products/edit/", this.productId]);
     });

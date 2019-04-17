@@ -46,6 +46,7 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+
     MatCardModule,
     MatIconModule,
     MatToolbarModule,
