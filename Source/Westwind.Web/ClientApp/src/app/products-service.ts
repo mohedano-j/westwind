@@ -25,9 +25,13 @@ export class ProductsService {
     return this.http.get<Product>(`${this.serviceRoot}products/${productId}/${this.sleep}`, this.httpOptions);
   }
 
+  //getOne$ = (productId: any): Observable<Product> => this.http.get<Product>(`${this.serviceRoot}products/${productId}/${this.sleep}`, this.httpOptions);
+
   getAll(): Observable<Array<Product>> {
     return this.http.get<Array<Product>>(`${this.serviceRoot}products/${this.sleep}`, this.httpOptions);
   }
+
+  //getAll$ = (): Observable<Array<Product>> => this.http.get<Array<Product>>(`${this.serviceRoot}products/${this.sleep}`, this.httpOptions);
 
   search(term: string) : Observable<Array<Product>> {
     return this.http.get<Array<Product>>(`${this.serviceRoot}products/search/${term}/${this.sleep}`, this.httpOptions);
